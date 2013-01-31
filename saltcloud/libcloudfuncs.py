@@ -33,15 +33,10 @@ def node_state(id):
     return states[id]
 
 
-def libcloud_version():
+def libcloud_version(libcloud):
     '''
     Require the minimal libcloud version
     '''
-    try:
-        import libcloud
-    except ImportError:
-        raise ImportError("salt-cloud requires >= libcloud 0.11.4")
-
     ver = libcloud.__version__
     ver = ver.replace('-', '.')
     comps = ver.split('.')

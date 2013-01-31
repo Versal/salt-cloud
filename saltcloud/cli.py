@@ -30,7 +30,12 @@ class SaltCloud(parsers.SaltCloudParser):
         '''
         Execute the salt-cloud command line
         '''
-        libcloud_version()
+        try:
+            import libcloud
+        except ImportError:
+            raise ImportError("salt-cloud requires >= libcloud 0.11.4")
+
+        libcloud_version(libcloud)
 
         # Parse shell arguments
         self.parse_args()
